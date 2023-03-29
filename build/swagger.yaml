@@ -1,0 +1,11 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: D365BCopenapi20
+  description: D365 Business Central Custom connector
+paths: {}
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /sss-dev/D365BCopenapi20/1.0.0
+schemes:
+ - https
