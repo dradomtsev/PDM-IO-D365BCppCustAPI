@@ -86,11 +86,21 @@ definitions:
               type: string
             systemVersion: 
               type: string
+            typename:
+              type: integer
             name: 
               type: string
             displayName: 
               type: string
             businessProfileId: 
+              type: string
+            systemCreatedAt: 
+              type: string
+            systemCreatedBy: 
+              type: string
+            systemModifiedAt: 
+              type: string
+            systemModifiedBy: 
               type: string
 securityDefinitions:
   OAuth2:
