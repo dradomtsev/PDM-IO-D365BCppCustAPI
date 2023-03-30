@@ -3,9 +3,60 @@ info:
   version: 1.0.0
   title: D365BCopenapi20
   description: D365 Business Central Custom connector
-paths: {}
-# Added by API Auto Mocking Plugin
-host: virtserver.swaggerhub.com
-basePath: /sss-dev/D365BCopenapi20/1.0.0
+  contact:
+    name: Dmytro Radomtsev
+    email: d.radomtsev@gmail.com
+tags:
+  - name: test
+    description: test connection
+securityDefinitions:
+  OAuth2:
+      type: oauth2
+      description: PWA auth engine with authorization code
+      flow: accessCode
+      authorizationUrl: https://login.microsoftonline.com/a4f698ed-bedd-4482-9998-4e5ddbad13f7/oauth2/v2.0/authorize
+      tokenUrl: https://login.microsoftonline.com/f5c9a7ab-a2f6-4390-9843-a399f97eb894/oauth2/v2.0/token
+      scopes:
+        https://api.businesscentral.dynamics.com/.default: Grants access to crud operations
 schemes:
  - https
+host: api.businesscentral.dynamics.com
+basePath: /
+paths:
+  /environments/v1.1:
+    get:
+      tags:
+        - test
+      description: Test connection
+      security:
+        - OAuth2: ['https://api.businesscentral.dynamics.com/.default']
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Get entities root
+          schema:
+              $ref: '#/definitions/envResponse200'
+definitions:
+  envResponse200:
+    type: object
+    properties:
+      value: 
+        type: array
+        items: 
+          type: object
+          properties:
+            aadTenantId: 
+              type: string
+            applicationFamily: 
+              type: string
+            type: 
+              type: string
+            name: 
+              type: string
+            countryCode: 
+              type: string
+            webServiceUrl: 
+              type: string
+            webClientLoginUrl: 
+              type: string
