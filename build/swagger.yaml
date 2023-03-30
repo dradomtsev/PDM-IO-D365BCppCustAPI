@@ -17,7 +17,7 @@ paths:
         - environment
       description: Get D365 BC environments data
       security:
-        - OAuth2: ['api.businesscentral.dynamics.com/.default']
+        - OAuth2: ['https://api.businesscentral.dynamics.com/.default']
       produces:
         - application/json
       responses:
@@ -40,7 +40,7 @@ paths:
           required: true
           description: Environment name
       security:
-        - OAuth2: ['api.businesscentral.dynamics.com/.default']
+        - OAuth2: ['https://api.businesscentral.dynamics.com/.default']
       produces:
         - application/json
       responses:
@@ -100,10 +100,12 @@ securityDefinitions:
       authorizationUrl: https://login.microsoftonline.com/a4f698ed-bedd-4482-9998-4e5ddbad13f7/oauth2/v2.0/authorize
       tokenUrl: https://login.microsoftonline.com/a4f698ed-bedd-4482-9998-4e5ddbad13f7/oauth2/v2.0/token
       scopes:
-       api.businesscentral.dynamics.com/.default: https://api.businesscentral.dynamics.com/.default
+        https://api.businesscentral.dynamics.com/.default: https://api.businesscentral.dynamics.com/.default
 security:
   - OAuth2:
-    - api.businesscentral.dynamics.com/.default
+    - https://api.businesscentral.dynamics.com/.default
 tags:
   - name: environment
     description: d365 bc environments data
+  - name: companies
+    description: d365 bc companies in environment
