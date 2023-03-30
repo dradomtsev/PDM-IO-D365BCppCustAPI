@@ -165,11 +165,11 @@ definitions:
                 format: int32
               importStatus: 
                 type: string
+              importError: 
+                type: string
               applyStatus: 
                 type: string
               applyError: 
-                type: string
-              importError: 
                 type: string
 securityDefinitions:
   OAuth2:
