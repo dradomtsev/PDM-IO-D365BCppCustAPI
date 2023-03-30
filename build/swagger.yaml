@@ -26,8 +26,31 @@ paths:
           schema:
               $ref: '#/definitions/envResponse200'
       summary: Get D365 BC environments
-      operationId: get_d365_bc
+      operationId: get_d365_bc_env
       x-ms-visibility: advanced
+  /v2.0/{environment_name}/api/microsoft/automation/v2.0/companies:
+    get:
+      tags:
+        - companies
+      description: Get all companies in environment
+      parameters:
+        - in: path
+          name: environment_name
+          type: string
+          required: true
+          description: Environment name
+      security:
+        - OAuth2: ['api.businesscentral.dynamics.com/.default']
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Get D365 BC companies in specified environment
+          schema:
+              $ref: '#/definitions/compResponse200'
+      summary: Get D365 BC companies in environment
+      operationId: get_d365_bc_comp_in_env
+      x-ms-visibility: important
 definitions:
   envResponse200:
     type: object
@@ -50,6 +73,24 @@ definitions:
             webServiceUrl: 
               type: string
             webClientLoginUrl: 
+              type: string
+  compResponse200:
+    type: object
+    properties:
+      value: 
+        type: array
+        items: 
+          type: object
+          properties:
+            id: 
+              type: string
+            systemVersion: 
+              type: string
+            name: 
+              type: string
+            displayName: 
+              type: string
+            businessProfileId: 
               type: string
 securityDefinitions:
   OAuth2:
