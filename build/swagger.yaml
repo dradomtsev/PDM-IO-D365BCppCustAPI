@@ -28,14 +28,14 @@ paths:
       summary: Get D365 BC environments
       operationId: get_d365_bc_env
       x-ms-visibility: advanced
-  /v2.0/{environment_name}/api/microsoft/automation/v2.0/companies:
+  /v2.0/{environmentName}/api/microsoft/automation/v2.0/companies:
     get:
       tags:
         - companies
       description: Get all companies in environment
       parameters:
         - in: path
-          name: environment_name
+          name: environmentName
           type: string
           required: true
           description: Environment name
@@ -50,6 +50,34 @@ paths:
               $ref: '#/definitions/compResponse200'
       summary: Get D365 BC companies in environment
       operationId: get_d365_bc_comp_in_env
+      x-ms-visibility: important
+  /v2.0/{environmentName}/api/microsoft/automation/v2.0/companies({companyId})/configurationPackages:
+    get:
+      tags:
+        - configurationPackages
+      description: Get all companies in environment
+      parameters:
+        - in: path
+          name: environmentName
+          type: string
+          required: true
+          description: Environment name
+        - in: path
+          name: companyId
+          type: string
+          required: true
+          description: Company Id
+      security:
+        - OAuth2: ['https://api.businesscentral.dynamics.com/.default']
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Get D365 BC configuration packages in specified company
+          schema:
+              $ref: '#/definitions/confPackResponse200'
+      summary: Get D365 BC configuration packages in specified company
+      operationId: get_d365_bc_confpacks_in_comp
       x-ms-visibility: important
 definitions:
   envResponse200:
@@ -102,6 +130,47 @@ definitions:
               type: string
             systemModifiedBy: 
               type: string
+  confPackResponse200:
+    type: object
+    properties:
+      value: 
+        type: array
+        items: 
+          type: object
+          properties:
+              id: 
+                type: string
+              code: 
+                type: string
+              packageName: 
+                type: string
+              languageId: 
+                type: integer
+                format: int32
+              productVersion: 
+                type: string
+              processingOrder: 
+                type: integer
+                format: int32
+              excludeConfigurationTables: 
+                type: boolean
+              numberOfTables: 
+                type: integer
+                format: int32
+              numberOfRecords: 
+                type: integer
+                format: int32
+              numberOfErrors: 
+                type: integer
+                format: int32
+              importStatus: 
+                type: string
+              applyStatus: 
+                type: string
+              applyError: 
+                type: string
+              importError: 
+                type: string
 securityDefinitions:
   OAuth2:
       type: oauth2
@@ -119,3 +188,5 @@ tags:
     description: d365 bc environments data
   - name: companies
     description: d365 bc companies in environment
+  - name: configurationPackages
+    description: d365 bc configuration packages in comapny
