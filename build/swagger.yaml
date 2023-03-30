@@ -7,8 +7,8 @@ info:
     name: Dmytro Radomtsev
     email: d.radomtsev@gmail.com
 tags:
-  - name: envs
-    description: test connection
+  - name: environment
+    description: environments data
 securityDefinitions:
   OAuth2:
       type: oauth2
@@ -26,7 +26,7 @@ paths:
   /environments/v1.1:
     get:
       tags:
-        - envs
+        - environment
       description: Get D365 BC environments data
       security:
         - OAuth2: ['https://api.businesscentral.dynamics.com/.default']
