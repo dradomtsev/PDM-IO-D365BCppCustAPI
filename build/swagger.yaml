@@ -7,7 +7,7 @@ info:
     name: Dmytro Radomtsev
     email: d.radomtsev@gmail.com
 tags:
-  - name: test
+  - name: envs
     description: test connection
 securityDefinitions:
   OAuth2:
@@ -15,7 +15,7 @@ securityDefinitions:
       description: PWA auth engine with authorization code
       flow: accessCode
       authorizationUrl: https://login.microsoftonline.com/a4f698ed-bedd-4482-9998-4e5ddbad13f7/oauth2/v2.0/authorize
-      tokenUrl: https://login.microsoftonline.com/f5c9a7ab-a2f6-4390-9843-a399f97eb894/oauth2/v2.0/token
+      tokenUrl: https://login.microsoftonline.com/a4f698ed-bedd-4482-9998-4e5ddbad13f7/oauth2/v2.0/token
       scopes:
         https://api.businesscentral.dynamics.com/.default: Grants access to crud operations
 schemes:
@@ -26,15 +26,15 @@ paths:
   /environments/v1.1:
     get:
       tags:
-        - test
-      description: Test connection
+        - envs
+      description: Get D365 BC environments data
       security:
         - OAuth2: ['https://api.businesscentral.dynamics.com/.default']
       produces:
         - application/json
       responses:
         200:
-          description: Get entities root
+          description: Get D365 BC envs
           schema:
               $ref: '#/definitions/envResponse200'
 definitions:
