@@ -6,22 +6,10 @@ info:
   contact:
     name: Dmytro Radomtsev
     email: d.radomtsev@gmail.com
-tags:
-  - name: environment
-    description: environments data
-securityDefinitions:
-  OAuth2:
-      type: oauth2
-      description: PWA auth engine with authorization code
-      flow: accessCode
-      authorizationUrl: https://login.microsoftonline.com/a4f698ed-bedd-4482-9998-4e5ddbad13f7/oauth2/v2.0/authorize
-      tokenUrl: https://login.microsoftonline.com/a4f698ed-bedd-4482-9998-4e5ddbad13f7/oauth2/v2.0/token
-      scopes:
-        https://api.businesscentral.dynamics.com/.default: Grants access to crud operations
-schemes:
- - https
 host: api.businesscentral.dynamics.com
 basePath: /
+schemes:
+ - https
 paths:
   /environments/v1.1:
     get:
@@ -29,7 +17,7 @@ paths:
         - environment
       description: Get D365 BC environments data
       security:
-        - OAuth2: ['https://api.businesscentral.dynamics.com/.default']
+        - OAuth2: ['api.businesscentral.dynamics.com/.default']
       produces:
         - application/json
       responses:
@@ -37,6 +25,9 @@ paths:
           description: Get D365 BC envs
           schema:
               $ref: '#/definitions/envResponse200'
+      summary: Get D365 BC environments
+      operationId: get_d365_bc
+      x-ms-visibility: advanced
 definitions:
   envResponse200:
     type: object
@@ -60,3 +51,18 @@ definitions:
               type: string
             webClientLoginUrl: 
               type: string
+securityDefinitions:
+  OAuth2:
+      type: oauth2
+      description: PWA auth engine with authorization code
+      flow: accessCode
+      authorizationUrl: https://login.microsoftonline.com/a4f698ed-bedd-4482-9998-4e5ddbad13f7/oauth2/v2.0/authorize
+      tokenUrl: https://login.microsoftonline.com/a4f698ed-bedd-4482-9998-4e5ddbad13f7/oauth2/v2.0/token
+      scopes:
+       api.businesscentral.dynamics.com/.default: https://api.businesscentral.dynamics.com/.default
+security:
+  - OAuth2:
+    - api.businesscentral.dynamics.com/.default
+tags:
+  - name: environment
+    description: d365 bc environments data
